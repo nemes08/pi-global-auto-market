@@ -3,16 +3,146 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pi Global Auto - Araçlar</title>
+    <title>Pi Global Auto - Araç Detay</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .gallery-main {
+            height: 450px;
+            background: linear-gradient(145deg, #1f1c1a, #141210);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-thumbnail {
+            height: 100px;
+            background: #1c1a18;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.2s;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-thumbnail:hover,
+        .gallery-thumbnail.active {
+            border-color: var(--gold);
+        }
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        .spec-label {
+            color: #889099;
+            font-weight: 400;
+        }
+        .spec-value {
+            color: #eaeaea;
+            font-weight: 500;
+        }
+        .price-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 16px;
+            padding: 16px 20px;
+            transition: 0.2s;
+        }
+        .price-box:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .price-box .label {
+            font-size: 0.8rem;
+            color: #889099;
+        }
+        .price-box .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .price-box .value.usd {
+            color: #eaeaea;
+            font-size: 1rem;
+        }
+        .seller-card {
+            background: rgba(16, 16, 16, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .seller-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #2a2826, #1a1816);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+        .map-placeholder {
+            height: 200px;
+            background: linear-gradient(145deg, #1f1c1a, #141210);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+        }
+        .feature-tag {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            color: #c8d0d8;
+            display: inline-block;
+        }
+        .vin-display {
+            font-family: monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            letter-spacing: 2px;
+            color: #889099;
+        }
+        @media (max-width: 768px) {
+            .gallery-main {
+                height: 300px;
+            }
+            .gallery-thumbnail {
+                height: 70px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- NAVIGATION (kopyala) -->
+    <!-- NAVIGATION -->
     <nav class="navbar navbar-expand-xl navbar-dark fixed-top py-2">
         <div class="container-fluid px-3 px-lg-5">
             <a class="navbar-brand" href="index.html"><i class="bi bi-currency-bitcoin"></i> Pi Auto</a>
@@ -50,75 +180,192 @@
         </div>
     </nav>
 
-    <!-- PAGE HEADER -->
+    <!-- VEHICLE DETAIL -->
     <section class="pt-5 mt-5">
         <div class="container py-4">
-            <h1 class="section-title gold-text" data-i18n="vehicles.title">Tüm Araçlar</h1>
-            <p class="text-secondary" data-i18n="vehicles.subtitle">50+ lüks araç arasından seçiminizi yapın</p>
-        </div>
-    </section>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-secondary text-decoration-none">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item"><a href="vehicles.html" class="text-secondary text-decoration-none">Araçlar</a></li>
+                    <li class="breadcrumb-item active gold-text" id="vehicleTitle">Araç Detayı</li>
+                </ol>
+            </nav>
 
-    <!-- FILTERS & RESULTS -->
-    <section class="container py-3">
-        <div class="row g-4">
-            <!-- Filters Sidebar -->
-            <div class="col-lg-3">
-                <div class="glass p-4">
-                    <h5 class="gold-text"><i class="bi bi-funnel me-2"></i>Filtreler</h5>
-                    <hr class="border-secondary" />
-                    
-                    <div class="mb-3">
-                        <label class="form-label text-secondary">Marka</label>
-                        <div id="brandFilters">
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Mercedes" /> Mercedes</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="BMW" /> BMW</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Ferrari" /> Ferrari</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Lamborghini" /> Lamborghini</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Rolls-Royce" /> Rolls-Royce</div>
+            <div class="row g-4">
+                <!-- Gallery -->
+                <div class="col-lg-7">
+                    <div class="gallery-main" id="mainGallery">
+                        <i class="bi bi-image" style="font-size: 4rem; color: #555;"></i>
+                    </div>
+                    <div class="row g-2 mt-2" id="thumbnailGallery">
+                        <div class="col-3">
+                            <div class="gallery-thumbnail active">
+                                <i class="bi bi-image" style="font-size: 2rem; color: #555;"></i>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="gallery-thumbnail">
+                                <i class="bi bi-image" style="font-size: 2rem; color: #555;"></i>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="gallery-thumbnail">
+                                <i class="bi bi-image" style="font-size: 2rem; color: #555;"></i>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="gallery-thumbnail">
+                                <i class="bi bi-image" style="font-size: 2rem; color: #555;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 360 & Video -->
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-outline-silver btn-sm flex-fill" id="view360Btn">
+                            <i class="bi bi-arrow-repeat me-1"></i> 360° Görünüm
+                        </button>
+                        <button class="btn btn-outline-silver btn-sm flex-fill" id="viewVideoBtn">
+                            <i class="bi bi-play-circle me-1"></i> Video
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="col-lg-5">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h2 class="fw-bold" id="detailModel">Mercedes-AMG GT 63 S</h2>
+                            <p class="text-secondary" id="detailBrand">Mercedes-Benz</p>
+                        </div>
+                        <span class="badge-verified fs-6">
+                            <i class="bi bi-patch-check-fill me-1"></i> Onaylı Bayi
+                        </span>
+                    </div>
+
+                    <!-- Price Boxes -->
+                    <div class="row g-2 mt-3">
+                        <div class="col-12">
+                            <div class="price-box">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="label"><i class="bi bi-coin me-1"></i> Satıcı Fiyatı (Pi)</span>
+                                    <span class="value" id="detailPrice">245,000 Pi</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="price-box">
+                                <div class="label">Piyasa Değeri (USD)</div>
+                                <div class="value usd" id="detailUSD">$198,000</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="price-box">
+                                <div class="label">GCV Referans <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Topluluk referans değeri, resmi kur değil"></i></div>
+                                <div class="value" id="detailGCV" style="font-size:1.1rem;">312,000 Pi</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label text-secondary">Kategori</label>
-                        <div id="categoryFilters">
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Luxury Cars" /> Lüks</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Supercars" /> Süper</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="SUV" /> SUV</div>
-                            <div class="form-check"><input class="form-check-input bg-dark" type="checkbox" value="Electric" /> Elektrik</div>
+                    <!-- Action Buttons -->
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-gold flex-fill" id="reserveDetailBtn">
+                            <i class="bi bi-wallet2 me-2"></i> Pi ile Rezerve
+                        </button>
+                        <button class="btn btn-outline-silver" id="favoriteDetailBtn">
+                            <i class="bi bi-star"></i>
+                        </button>
+                        <button class="btn btn-outline-silver" id="shareDetailBtn">
+                            <i class="bi bi-share"></i>
+                        </button>
+                    </div>
+
+                    <!-- Specifications -->
+                    <div class="mt-4">
+                        <h6 class="gold-text"><i class="bi bi-list-ul me-2"></i>Özellikler</h6>
+                        <div class="spec-item">
+                            <span class="spec-label">Yıl</span>
+                            <span class="spec-value" id="detailYear">2025</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Kilometre</span>
+                            <span class="spec-value" id="detailMileage">8,200 km</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Şanzıman</span>
+                            <span class="spec-value" id="detailTransmission">Otomatik</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Yakıt</span>
+                            <span class="spec-value" id="detailFuel">V8 Hybrid</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Renk</span>
+                            <span class="spec-value" id="detailColor">Siyah</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Ülke</span>
+                            <span class="spec-value" id="detailCountry">Almanya</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">VIN</span>
+                            <span class="vin-display" id="detailVIN">W1K4G5B2X3N8M9K2</span>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label text-secondary">Fiyat Aralığı</label>
-                        <div class="d-flex gap-2">
-                            <input type="number" class="form-control bg-dark text-light border-secondary" placeholder="Min" id="priceMin" />
-                            <input type="number" class="form-control bg-dark text-light border-secondary" placeholder="Max" id="priceMax" />
-                        </div>
+                    <!-- Features -->
+                    <div class="mt-3 d-flex flex-wrap gap-2">
+                        <span class="feature-tag"><i class="bi bi-check-circle me-1 gold-text"></i> Deri Koltuk</span>
+                        <span class="feature-tag"><i class="bi bi-check-circle me-1 gold-text"></i> Panoramik Cam</span>
+                        <span class="feature-tag"><i class="bi bi-check-circle me-1 gold-text"></i> Burmester Ses</span>
+                        <span class="feature-tag"><i class="bi bi-check-circle me-1 gold-text"></i> AMG Paket</span>
+                        <span class="feature-tag"><i class="bi bi-check-circle me-1 gold-text"></i> 360° Kamera</span>
+                        <span class="feature-tag"><i class="bi bi-check-circle me-1 gold-text"></i> Adaptif Süspansiyon</span>
                     </div>
 
-                    <div class="form-check mb-3">
-                        <input class="form-check-input bg-dark" type="checkbox" id="verifiedFilter" />
-                        <label class="form-check-label text-secondary">Sadece Onaylı Bayiler</label>
+                    <!-- Inspection Report -->
+                    <div class="mt-3">
+                        <button class="btn btn-outline-silver btn-sm w-100" id="inspectionBtn">
+                            <i class="bi bi-file-earmark-text me-2"></i> İnceleme Raporunu Görüntüle
+                        </button>
                     </div>
-
-                    <button class="btn btn-gold w-100" id="applyFiltersBtn">Filtrele</button>
-                    <button class="btn btn-outline-silver w-100 mt-2" id="resetFiltersBtn">Sıfırla</button>
                 </div>
             </div>
 
-            <!-- Results -->
-            <div class="col-lg-9">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span id="resultCount" class="text-secondary">0 araç</span>
-                    <select class="form-select form-select-sm bg-dark text-light border-secondary" style="width:auto;" id="sortSelect">
-                        <option value="price_asc">Fiyat: Düşük → Yüksek</option>
-                        <option value="price_desc">Fiyat: Yüksek → Düşük</option>
-                        <option value="year_desc">Yıl: Yeni → Eski</option>
-                        <option value="year_asc">Yıl: Eski → Yeni</option>
-                    </select>
+            <!-- Seller & Map -->
+            <div class="row g-4 mt-4">
+                <div class="col-md-6">
+                    <h6 class="gold-text"><i class="bi bi-person-badge me-2"></i>Satıcı Bilgileri</h6>
+                    <div class="seller-card">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="seller-avatar"><i class="bi bi-building"></i></div>
+                            <div>
+                                <h6 class="mb-0" id="sellerName">Premium Motors</h6>
+                                <span class="badge-verified"><i class="bi bi-patch-check-fill me-1"></i> Onaylı Bayi</span>
+                                <p class="text-secondary small mb-0 mt-1"><i class="bi bi-geo-alt me-1"></i> <span id="sellerLocation">Stuttgart, Almanya</span></p>
+                            </div>
+                        </div>
+                        <hr class="border-secondary opacity-25" />
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-gold btn-sm flex-fill" id="contactSellerBtn">
+                                <i class="bi bi-chat me-2"></i> Mesaj Gönder
+                            </button>
+                            <button class="btn btn-outline-silver btn-sm flex-fill" id="callSellerBtn">
+                                <i class="bi bi-telephone me-2"></i> Ara
+                            </button>
+                        </div>
+                        <div class="mt-2 small text-secondary">
+                            <i class="bi bi-clock me-1"></i> Son giriş: 2 saat önce
+                        </div>
+                    </div>
                 </div>
-                <div class="row g-4" id="vehiclesContainer">
-                    <!-- JavaScript ile yüklenecek -->
+                <div class="col-md-6">
+                    <h6 class="gold-text"><i class="bi bi-geo-alt me-2"></i>Konum</h6>
+                    <div class="map-placeholder">
+                        <div class="text-center">
+                            <i class="bi bi-map" style="font-size: 2.5rem; color: #555;"></i>
+                            <p class="text-secondary mb-0">Harita yükleniyor...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,160 +388,108 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/language.js"></script>
     <script src="js/wallet.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/filter.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // Vehicles sayfası özel başlatma
         document.addEventListener('DOMContentLoaded', function() {
-            // Tüm araçları göster
-            const container = document.getElementById('vehiclesContainer');
-            if (container && typeof VEHICLES !== 'undefined') {
-                // Filtreleri uygula
-                const filters = FilterSystem.getFilters();
-                let results = FilterSystem.filterVehicles(VEHICLES);
-                
-                // Sıralama
-                const sortSelect = document.getElementById('sortSelect');
-                if (sortSelect) {
-                    results = SearchEngine.sortResults(results, sortSelect.value);
-                    sortSelect.addEventListener('change', function() {
-                        const sorted = SearchEngine.sortResults(results, this.value);
-                        renderVehicles(sorted);
-                    });
-                }
-                
-                renderVehicles(results);
-                
-                // Filtre butonları
-                document.getElementById('applyFiltersBtn')?.addEventListener('click', function() {
-                    applyFilters();
-                });
-                
-                document.getElementById('resetFiltersBtn')?.addEventListener('click', function() {
-                    FilterSystem.resetFilters();
-                    document.querySelectorAll('#brandFilters input, #categoryFilters input').forEach(cb => cb.checked = false);
-                    document.getElementById('priceMin').value = '';
-                    document.getElementById('priceMax').value = '';
-                    document.getElementById('verifiedFilter').checked = false;
-                    applyFilters();
-                });
-            }
-        });
-        
-        function applyFilters() {
-            // Checkbox'ları topla
-            const brands = [...document.querySelectorAll('#brandFilters input:checked')].map(cb => cb.value);
-            const categories = [...document.querySelectorAll('#categoryFilters input:checked')].map(cb => cb.value);
-            const minPrice = parseInt(document.getElementById('priceMin').value) || 0;
-            const maxPrice = parseInt(document.getElementById('priceMax').value) || Infinity;
-            const verified = document.getElementById('verifiedFilter').checked;
+            // URL'den ID al
+            const params = new URLSearchParams(window.location.search);
+            const vehicleId = parseInt(params.get('id')) || 1;
             
-            // Filtreleri uygula
-            FilterSystem.setFilter('brands', brands);
-            FilterSystem.setFilter('categories', categories);
-            FilterSystem.setFilter('priceRange', { min: minPrice, max: maxPrice });
-            FilterSystem.setFilter('verified', verified);
-            
-            const results = FilterSystem.filterVehicles(VEHICLES);
-            const sortSelect = document.getElementById('sortSelect');
-            const sorted = SearchEngine.sortResults(results, sortSelect.value);
-            renderVehicles(sorted);
-        }
-        
-        function renderVehicles(vehicles) {
-            const container = document.getElementById('vehiclesContainer');
-            const count = document.getElementById('resultCount');
-            
-            if (!container) return;
-            
-            if (vehicles.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 text-center py-5">
-                        <i class="bi bi-search" style="font-size: 3rem; color: #555;"></i>
-                        <h5 class="text-secondary mt-3">Araç bulunamadı</h5>
-                        <p class="text-secondary">Filtrelerinizi değiştirip tekrar deneyin.</p>
-                    </div>
-                `;
-                if (count) count.textContent = '0 araç';
+            // Araç verisini bul
+            const vehicle = VEHICLES.find(v => v.id === vehicleId);
+            if (!vehicle) {
+                window.location.href = 'vehicles.html';
                 return;
             }
-            
-            container.innerHTML = vehicles.map(v => `
-                <div class="col-md-6 col-lg-4">
-                    <div class="vehicle-card">
-                        <div class="vehicle-img">
-                            <i class="bi bi-image"></i>
-                        </div>
-                        <div class="mt-2 d-flex justify-content-between align-items-start">
-                            <h5 class="fw-bold mb-0">${v.brand} ${v.model}</h5>
-                            <span class="badge-verified">
-                                <i class="bi bi-patch-check-fill me-1"></i>
-                                ${v.verified ? 'Onaylı Bayi' : 'Bayi'}
-                            </span>
-                        </div>
-                        <div class="d-flex flex-wrap gap-2 mt-1 small text-secondary">
-                            <span><i class="bi bi-person"></i> ${v.seller}</span>
-                            <span><i class="bi bi-geo-alt"></i> ${v.country}</span>
-                            <span>${v.year}</span>
-                            <span>${v.mileage.toLocaleString()} km</span>
-                        </div>
-                        <div class="d-flex flex-wrap gap-2 mt-1 small">
-                            <span>${v.transmission}</span>
-                            <span>${v.fuel}</span>
-                            <span>${v.color}</span>
-                        </div>
-                        <div class="mt-2 d-flex flex-wrap align-items-center gap-2">
-                            <span class="price-tag">
-                                <i class="bi bi-coin me-1"></i> ${v.price.toLocaleString()} Pi
-                            </span>
-                            <span class="text-light fw-light" style="font-size:0.8rem;">
-                                $${v.priceUSD.toLocaleString()} USD
-                            </span>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <span class="badge bg-dark text-warning border-gold border">
-                                GCV ${v.gcv.toLocaleString()} Pi
-                            </span>
-                            <span class="price-disclaimer">*topluluk referansı</span>
-                        </div>
-                        <div class="d-flex gap-2 mt-3">
-                            <button class="btn btn-outline-silver btn-sm flex-fill favorite-btn" data-id="${v.id}">
-                                <i class="bi bi-star"></i> Favori
-                            </button>
-                            <button class="btn btn-gold btn-sm flex-fill reserve-btn" data-id="${v.id}">
-                                <i class="bi bi-wallet2"></i> Rezerve
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            
-            if (count) count.textContent = `${vehicles.length} araç`;
-            
-            // Favori ve rezerve eventleri
-            document.querySelectorAll('.favorite-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.dataset.id);
-                    window.toggleFavorite(id);
-                });
-            });
-            
-            document.querySelectorAll('.reserve-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.dataset.id);
-                    const vehicle = VEHICLES.find(v => v.id === id);
-                    if (vehicle && typeof window.showReserveModal === 'function') {
-                        window.showReserveModal(vehicle);
-                    }
-                });
-            });
-            
-            // Favori durumunu güncelle
-            if (typeof window.updateFavoriteButtons === 'function') {
-                window.updateFavoriteButtons();
+
+            // Sayfayı doldur
+            document.getElementById('vehicleTitle').textContent = `${vehicle.brand} ${vehicle.model}`;
+            document.getElementById('detailModel').textContent = `${vehicle.brand} ${vehicle.model}`;
+            document.getElementById('detailBrand').textContent = vehicle.brand;
+            document.getElementById('detailPrice').textContent = `${vehicle.price.toLocaleString()} Pi`;
+            document.getElementById('detailUSD').textContent = `$${vehicle.priceUSD.toLocaleString()}`;
+            document.getElementById('detailGCV').textContent = `${vehicle.gcv.toLocaleString()} Pi`;
+            document.getElementById('detailYear').textContent = vehicle.year;
+            document.getElementById('detailMileage').textContent = `${vehicle.mileage.toLocaleString()} km`;
+            document.getElementById('detailTransmission').textContent = vehicle.transmission;
+            document.getElementById('detailFuel').textContent = vehicle.fuel;
+            document.getElementById('detailColor').textContent = vehicle.color;
+            document.getElementById('detailCountry').textContent = vehicle.country;
+            document.getElementById('detailVIN').textContent = `W1K4G5B2X3N8M9K2${vehicle.id}`;
+            document.getElementById('sellerName').textContent = vehicle.seller;
+            document.getElementById('sellerLocation').textContent = `${vehicle.country}`;
+
+            // Favori durumu
+            const favorites = JSON.parse(localStorage.getItem('piAutoFavorites') || '[]');
+            const favBtn = document.getElementById('favoriteDetailBtn');
+            if (favorites.includes(vehicle.id)) {
+                favBtn.innerHTML = '<i class="bi bi-star-fill gold-text"></i>';
             }
-        }
+
+            // Eventler
+            favBtn.addEventListener('click', function() {
+                window.toggleFavorite(vehicle.id);
+                const updated = JSON.parse(localStorage.getItem('piAutoFavorites') || '[]');
+                if (updated.includes(vehicle.id)) {
+                    this.innerHTML = '<i class="bi bi-star-fill gold-text"></i>';
+                } else {
+                    this.innerHTML = '<i class="bi bi-star"></i>';
+                }
+            });
+
+            document.getElementById('reserveDetailBtn').addEventListener('click', function() {
+                if (typeof window.showReserveModal === 'function') {
+                    window.showReserveModal(vehicle);
+                }
+            });
+
+            document.getElementById('shareDetailBtn').addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: `${vehicle.brand} ${vehicle.model}`,
+                        text: `${vehicle.brand} ${vehicle.model} - ${vehicle.price.toLocaleString()} Pi`,
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    window.showToast('Link kopyalandı!', 'success');
+                }
+            });
+
+            document.getElementById('contactSellerBtn').addEventListener('click', function() {
+                window.showToast('Satıcıya mesaj gönderiliyor...', 'info');
+            });
+
+            document.getElementById('inspectionBtn').addEventListener('click', function() {
+                window.showToast('İnceleme raporu hazırlanıyor...', 'info');
+            });
+
+            // 360 butonu
+            document.getElementById('view360Btn').addEventListener('click', function() {
+                window.showToast('360° görünüm başlatılıyor...', 'info');
+            });
+
+            document.getElementById('viewVideoBtn').addEventListener('click', function() {
+                window.showToast('Video yükleniyor...', 'info');
+            });
+
+            // Thumbnail galeri
+            document.querySelectorAll('.gallery-thumbnail').forEach((thumb, index) => {
+                thumb.addEventListener('click', function() {
+                    document.querySelectorAll('.gallery-thumbnail').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    // Ana galeriyi güncelle
+                    const main = document.getElementById('mainGallery');
+                    main.innerHTML = `<i class="bi bi-image" style="font-size: 4rem; color: #555;"></i><span class="ms-2 text-secondary">Görsel ${index + 1}</span>`;
+                });
+            });
+
+            // Tooltip
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
     </script>
 </body>
 </html>
