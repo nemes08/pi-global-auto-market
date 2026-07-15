@@ -1,156 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pi Global Auto Market</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Pi Global Auto Market</title>
+    
+    <!-- Bootstrap 5 + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<header><h1>Pi Global Auto Market</h1><p>Drive the Future with Pi</p></header>
-<nav>
-<a href="#">Home</a>
-<a href="#">Vehicles</a>
-<a href="#">Dealers</a>
-<a href="#">Auctions</a>
-<a href="#">Contact</a>
-<button>Connect Pi Wallet</button>
-</nav>
-<section class="hero">
-<h2>Global Luxury Vehicle Marketplace</h2>
-<p>Buy • Sell • Reserve Luxury Vehicles with Pi</p>
-</section>
-<section class="cars">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-xl navbar-dark fixed-top py-2" id="mainNav">
+        <div class="container-fluid px-3 px-lg-5">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-currency-bitcoin"></i> Pi Auto
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1 gap-lg-2">
+                    <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="vehicles.html" data-i18n="nav.vehicles">Araçlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dealers.html" data-i18n="nav.dealers">Bayiler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="auctions.html" data-i18n="nav.auctions">Açık Artırma</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html" data-i18n="nav.news">Haberler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">İletişim</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <div class="lang-selector me-2">
+                        <select class="form-select form-select-sm bg-dark text-light border-secondary" id="languageSelect" style="width:auto;">
+                            <option value="tr">Türkçe</option>
+                            <option value="en">English</option>
+                            <option value="de">Deutsch</option>
+                            <option value="fr">Français</option>
+                            <option value="es">Español</option>
+                            <option value="it">Italiano</option>
+                            <option value="ar">العربية</option>
+                            <option value="ru">Русский</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                    </div>
+                    <a href="login.html" class="btn btn-outline-silver btn-sm px-4" data-i18n="nav.login">Giriş</a>
+                    <a href="register.html" class="btn btn-gold btn-sm px-4" data-i18n="nav.register">Kayıt Ol</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=286" alt="Mercedes-AMG G63">
-<div class="car-info">
-<h3>Mercedes-AMG G63</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=9" alt="Ferrari SF90">
-<div class="car-info">
-<h3>Ferrari SF90</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=181" alt="Lamborghini Revuelto">
-<div class="car-info">
-<h3>Lamborghini Revuelto</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=44" alt="Rolls-Royce Ghost">
-<div class="car-info">
-<h3>Rolls-Royce Ghost</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=695" alt="Bentley Continental GT">
-<div class="car-info">
-<h3>Bentley Continental GT</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=142" alt="Porsche 911 Turbo S">
-<div class="car-info">
-<h3>Porsche 911 Turbo S</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=305" alt="BMW M8 Competition">
-<div class="car-info">
-<h3>BMW M8 Competition</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=515" alt="Audi RS7">
-<div class="car-info">
-<h3>Audi RS7</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=657" alt="Tesla Model S Plaid">
-<div class="car-info">
-<h3>Tesla Model S Plaid</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=319" alt="McLaren 750S">
-<div class="car-info">
-<h3>McLaren 750S</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=522" alt="Bugatti Chiron">
-<div class="car-info">
-<h3>Bugatti Chiron</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div>
-<div class="car-card">
-<img src="https://picsum.photos/600/400?random=550" alt="Aston Martin DB12">
-<div class="car-info">
-<h3>Aston Martin DB12</h3>
-<p><strong>Seller Price:</strong> -- π</p>
-<p><strong>Exchange Value:</strong> Live Market</p>
-<p><strong>Community GCV Reference</strong></p>
-<p>⭐ Verified Dealer</p>
-<button class="reserve-btn">Reserve with Pi</button>
-</div>
-</div></section><footer>© 2026 Pi Global Auto Market</footer><script src='js/app.js'></script></body></html>
+    <!-- HERO SECTION -->
+    <section class="hero pt-5 mt-4">
+        <div class="container hero-content">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="glass p-4 p-lg-5">
+                        <h1 class="display-3 fw-bold" data-i18n="hero.title">Geleceği <br /><span>Pi ile Sür</span></h1>
+                        <p class="hero-sub mt-3" data-i18n="hero.subtitle">Pi Network ile Desteklenen Küresel Lüks Araç Pazarı</p>
+                        <div class="d-flex flex-wrap gap-3 mt-4">
+                            <a href="vehicles.html" class="btn btn-gold">
+                                <i class="bi bi-grid-3x3-gap-fill me-2"></i><span data-i18n="hero.browse">Araçları İncele</span>
+                            </a>
+                            <a href="sell.html" class="btn btn-outline-silver">
+                                <i class="bi bi-plus-circle me-2"></i><span data-i18n="hero.sell">Aracını Sat</span>
+                            </a>
+                            <button class="btn btn-outline-silver" id="connectWalletBtn">
+                                <i class="bi bi-wallet2 me-2"></i><span data-i18n="hero.connect">Pi Cüzdanı Bağla</span>
+                            </button>
+                        </div>
+                        <!-- Search -->
+                        <div class="search-card d-flex flex-wrap align-items-center gap-2 mt-4">
+                            <select class="form-select form-select-sm bg-transparent text-light border-0" id="searchBrand" style="flex:1; min-width:100px;">
+                                <option value="" data-i18n="search.brand">Marka</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="bmw">BMW</option>
+                                <option value="audi">Audi</option>
+                                <option value="porsche">Porsche</option>
+                                <option value="ferrari">Ferrari</option>
+                                <option value="lamborghini">Lamborghini</option>
+                            </select>
+                            <select class="form-select form-select-sm bg-transparent text-light border-0" id="searchModel" style="flex:1; min-width:100px;">
+                                <option value="" data-i18n="search.model">Model</option>
+                            </select>
+                            <select class="form-select form-select-sm bg-transparent text-light border-0" id="searchCountry" style="flex:1; min-width:100px;">
+                                <option value="" data-i18n="search.country">Ülke</option>
+                                <option value="germany">Almanya</option>
+                                <option value="italy">İtalya</option>
+                                <option value="uk">İngiltere</option>
+                                <option value="usa">ABD</option>
+                            </select>
+                            <select class="form-select form-select-sm bg-transparent text-light border-0" id="searchYear" style="flex:1; min-width:90px;">
+                                <option value="" data-i18n="search.year">Yıl</option>
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
+                            <select class="form-select form-select-sm bg-transparent text-light border-0" id="searchPrice" style="flex:1; min-width:100px;">
+                                <option value="" data-i18n="search.price">Fiyat</option>
+                                <option value="100000">$100k+</option>
+                                <option value="300000">$300k+</option>
+                                <option value="500000">$500k+</option>
+                            </select>
+                            <button class="btn btn-gold" id="searchBtn"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="container py-5">
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <span class="category-pill"><i class="bi bi-car-front me-1"></i><span data-i18n="categories.luxury">Lüks Otomobiller</span></span>
+            <span class="category-pill"><i class="bi bi-lightning-charge-fill me-1"></i><span data-i18n="categories.supercar">Süper Arabalar</span></span>
+            <span class="category-pill"><i class="bi bi-truck me-1"></i><span data-i18n="categories.suv">SUV</span></span>
+            <span class="category-pill"><i class="bi bi-ev-station me-1"></i><span data-i18n="categories.electric">Elektrikli</span></span>
+            <span class="category-pill"><i class="bi bi-bicycle me-1"></i><span data-i18n="categories.motorcycle">Motosiklet</span></span>
+            <span class="category-pill"><i class="bi bi-truck-front me-1"></i><span data-i18n="categories.truck">Kamyonet</span></span>
+            <span class="category-pill"><i class="bi bi-water me-1"></i><span data-i18n="categories.boat">Tekne</span></span>
+            <span class="category-pill"><i class="bi bi-airplane me-1"></i><span data-i18n="categories.jet">Özel Jet</span></span>
+        </div>
+        <!-- Brand Logos -->
+        <div class="d-flex flex-wrap gap-2 justify-content-center mt-3">
+            <span class="brand-badge">Mercedes</span>
+            <span class="brand-badge">BMW</span>
+            <span class="brand-badge">Audi</span>
+            <span class="brand-badge">Porsche</span>
+            <span class="brand-badge">Ferrari</span>
+            <span class="brand-badge">Lamborghini</span>
+            <span class="brand-badge">Rolls-Royce</span>
+            <span class="brand-badge">Bentley</span>
+            <span class="brand-badge">McLaren</span>
+            <span class="brand-badge">Bugatti</span>
+            <span class="brand-badge">Aston Martin</span>
+            <span class="brand-badge">Tesla</span>
+            <span class="brand-badge">Land Rover</span>
+            <span class="brand-badge">Lexus</span>
+            <span class="brand-badge">Jaguar</span>
+            <span class="brand-badge">Pagani</span>
+            <span class="brand-badge">Koenigsegg</span>
+            <span class="brand-badge">Maserati</span>
+        </div>
+    </div>
+
+    <!-- FEATURED VEHICLES -->
+    <div class="container py-4">
+        <h3 class="section-title gold-text mb-4">
+            <i class="bi bi-grid-fill me-2"></i><span data-i18n="featured.title">Öne Çıkan İlanlar</span>
+        </h3>
+        <div class="row g-4" id="featuredVehicles">
+            <!-- Vehicles loaded by JavaScript -->
+        </div>
+    </div>
+
+    <!-- WALLET & DEALER DASHBOARD -->
+    <div class="container py-4">
+        <div class="glass p-4 p-lg-5">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h4><i class="bi bi-wallet2 gold-text me-2"></i><span data-i18n="wallet.title">Pi Cüzdanı</span></h4>
+                    <p class="text-secondary" data-i18n="wallet.subtitle">Bağlan · Pi ile Giriş · Rezerve · Yatırma · İşlem Geçmişi</p>
+                    <button class="btn btn-gold" id="walletConnectBtn">
+                        <i class="bi bi-plug"></i> <span data-i18n="wallet.connect">Cüzdan Bağla</span>
+                    </button>
+                    <button class="btn btn-outline-silver ms-2" id="walletHistoryBtn">
+                        <i class="bi bi-clock-history"></i> <span data-i18n="wallet.history">İşlemler</span>
+                    </button>
+                </div>
+                <div class="col-md-6 mt-3 mt-md-0">
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-dark border-gold text-light p-2" data-i18n="modules.escrow">Escrow</span>
+                        <span class="badge bg-dark border-gold text-light p-2" data-i18n="modules.auction">Açık Artırma</span>
+                        <span class="badge bg-dark border-gold text-light p-2" data-i18n="modules.ai">AI Danışman</span>
+                        <span class="badge bg-dark border-gold text-light p-2" data-i18n="modules.insurance">Sigorta</span>
+                        <span class="badge bg-dark border-gold text-light p-2" data-i18n="modules.financing">Finansman</span>
+                        <span class="badge bg-dark border-gold text-light p-2" data-i18n="modules.shipping">Nakliye</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-dark py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <h6 class="gold-text">Pi Global Auto</h6>
+                    <p class="small text-secondary" data-i18n="footer.tagline">Geleceği Pi ile sürün.</p>
+                </div>
+                <div class="col-md-3">
+                    <h6 data-i18n="footer.about">Hakkında</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-secondary text-decoration-none" data-i18n="footer.privacy">Gizlilik</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none" data-i18n="footer.terms">Koşullar</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none" data-i18n="footer.support">Destek</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 data-i18n="footer.market">Pazar</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="vehicles.html" class="text-secondary text-decoration-none" data-i18n="footer.vehicles">Araçlar</a></li>
+                        <li><a href="dealers.html" class="text-secondary text-decoration-none" data-i18n="footer.dealers">Bayiler</a></li>
+                        <li><a href="auctions.html" class="text-secondary text-decoration-none" data-i18n="footer.auctions">Açık Artırma</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 data-i18n="footer.community">Topluluk</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-secondary text-decoration-none" data-i18n="footer.pinetwork">Pi Network</a></li>
+                        <li><a href="news.html" class="text-secondary text-decoration-none" data-i18n="footer.news">Haberler</a></li>
+                        <li><a href="contact.html" class="text-secondary text-decoration-none" data-i18n="footer.contact">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25" />
+            <p class="text-center text-secondary small">© 2026 Pi Global Auto Market — <span data-i18n="footer.tagline">Lüks Araç Pazarı</span></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/wallet.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
