@@ -61,3 +61,136 @@
                 </ul>
                 <div class="d-flex align-items-center gap-2 flex-wrap">
                     <span class="text-secondary small me-2"><i class="bi bi-person-circle me-1"></i> Ahmet Y.</span>
+                    <a href="login.html" class="btn btn-outline-silver btn-sm px-4">Çıkış</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PROFILE -->
+    <section class="pt-5 mt-5">
+        <div class="container py-4">
+            <div class="row g-4">
+                <!-- Profile Sidebar -->
+                <div class="col-lg-4">
+                    <div class="profile-card text-center">
+                        <div class="profile-avatar"><i class="bi bi-person"></i></div>
+                        <h5 class="mt-3">Ahmet Yılmaz</h5>
+                        <p class="text-secondary small">ahmet@email.com</p>
+                        <span class="badge-verified"><i class="bi bi-patch-check-fill me-1"></i> Doğrulanmış Kullanıcı</span>
+                        
+                        <hr class="border-secondary opacity-25" />
+                        
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <div class="gold-text fw-bold">12</div>
+                                <div class="text-secondary small">Favori</div>
+                            </div>
+                            <div>
+                                <div class="gold-text fw-bold">3</div>
+                                <div class="text-secondary small">Rezervasyon</div>
+                            </div>
+                            <div>
+                                <div class="gold-text fw-bold">8</div>
+                                <div class="text-secondary small">İlan</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card mt-3">
+                        <h6 class="gold-text"><i class="bi bi-wallet2 me-2"></i>Pi Cüzdanı</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-secondary">Bakiye</span>
+                            <span class="gold-text fw-bold" id="profileBalance">12,450 Pi</span>
+                        </div>
+                        <button class="btn btn-gold btn-sm w-100 mt-2" id="profileWalletBtn">
+                            <i class="bi bi-wallet2 me-2"></i> Cüzdanı Yönet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Favorites -->
+                <div class="col-lg-8">
+                    <h5 class="gold-text"><i class="bi bi-star-fill me-2"></i>Favori Araçlarım</h5>
+                    <div id="favoritesContainer">
+                        <!-- JavaScript ile doldurulacak -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-dark py-4 mt-5">
+        <div class="container">
+            <p class="text-center text-secondary small mb-0">© 2026 Pi Global Auto Market — Kullanıcı Profili</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/wallet.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Favorileri göster
+            const container = document.getElementById('favoritesContainer');
+            const favorites = JSON.parse(localStorage.getItem('piAutoFavorites') || '[]');
+            
+            if (favorites.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="bi bi-star" style="font-size: 3rem; color: #555;"></i>
+                        <p class="text-secondary mt-3">Henüz favori aracınız yok.</p>
+                        <a href="vehicles.html" class="btn btn-gold btn-sm">Araçları Keşfedin</a>
+                    </div>
+                `;
+            } else {
+                const favVehicles = VEHICLES.filter(v => favorites.includes(v.id));
+                container.innerHTML = favVehicles.map(v => `
+                    <div class="favorite-item mb-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-0">${v.brand} ${v.model}</h6>
+                                <span class="text-secondary small">${v.year} · ${v.mileage.toLocaleString()} km</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <span class="price-tag">${v.price.toLocaleString()} Pi</span>
+                                <a href="vehicle.html?id=${v.id}" class="btn btn-gold btn-sm">Detay</a>
+                                <button class="btn btn-outline-silver btn-sm remove-fav" data-id="${v.id}">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Favori kaldır
+                document.querySelectorAll('.remove-fav').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        window.toggleFavorite(id);
+                        this.closest('.favorite-item').remove();
+                        if (document.querySelectorAll('.favorite-item').length === 0) {
+                            location.reload();
+                        }
+                    });
+                });
+            }
+
+            // Wallet
+            document.getElementById('profileWalletBtn').addEventListener('click', function() {
+                if (typeof PiWallet !== 'undefined') {
+                    PiWallet.connect();
+                }
+            });
+
+            // Wallet state
+            if (typeof PiWallet !== 'undefined' && PiWallet.isConnected()) {
+                const balance = PiWallet.getBalance();
+                document.getElementById('profileBalance').textContent = `${balance.toLocaleString()} Pi`;
+            }
+        });
+    </script>
+</body>
+</html>
