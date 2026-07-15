@@ -1,12 +1,44 @@
-# Pi Global Auto Market
+# 🚗 Pi Global Auto Market
 
-## The Global Luxury Vehicle Marketplace Powered by Pi Network
+**The Global Luxury Vehicle Marketplace Powered by Pi Network**
 
-Buy • Sell • Reserve Luxury Vehicles using Pi.
+Buy, sell, and reserve luxury vehicles using Pi cryptocurrency. A premium dark-theme dApp optimized for Pi Browser and GitHub Pages.
 
-### Features
-- Luxury Vehicle Marketplace
-- Verified Dealers
-- Pi Wallet Integration
-- Global Shipping
-- Secure Reservations
+## ✨ Features
+
+- 🌍 10+ Languages (TR, EN, DE, FR, ES, IT, AR, RU, JA, KO)
+- 👛 Pi Wallet Integration (Login, Reserve, Payments)
+- 🔎 Smart Search & Filter System
+- 🚘 50+ Luxury Brands (Mercedes, Ferrari, Lamborghini, Rolls-Royce, etc.)
+- 📸 Multi-image Gallery (up to 30 photos)
+- ⭐ Verified Dealer Badges
+- 💰 Three Price Displays:
+  - Seller Price (Pi)
+  - Exchange Market Value (USD)
+  - Community Ecosystem Reference (GCV)
+- ❤️ Favorites System
+- 💬 Seller Messaging
+- 📅 Reservation System with Pi
+- 📱 Fully Mobile Responsive
+- 🎨 Premium Dark Theme with Gold & Silver Accents
+- ✨ Glassmorphism Effects
+
+## 🗺️ Roadmap
+
+- ✅ Sprint 1: Premium Homepage & Navigation
+- ✅ Sprint 2: Vehicle Details & Gallery (360°, Video)
+- ✅ Sprint 3: Dealer Dashboard (Listings, Upload 30 Images + Video)
+- ✅ Sprint 4: Pi Wallet, Login/Register with Pi
+- ✅ Sprint 5: Profile & Favorites
+- 🔜 Sprint 6: AI Car Advisor
+- 🔜 Sprint 7: World Map & Shipping Tracking
+- 🔜 Sprint 8: Admin Panel
+
+## 🛠️ Tech Stack
+
+- HTML5, CSS3, JavaScript (Vanilla)
+- Bootstrap 5
+- Pi Network SDK (via Pi Browser)
+- LocalStorage for favorites & reservations
+
+## 📁 Project Structure
