@@ -1,0 +1,24 @@
+body{
+    background:#0b0b0b;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.navbar{
+    border-bottom:1px solid #d4af37;
+}
+
+.btn-warning{
+    background:#d4af37;
+    border:none;
+    color:#000;
+    font-weight:bold;
+}
+
+.btn-warning:hover{
+    background:#f1c85b;
+}
+
+h1{
+    color:#d4af37;
+}
